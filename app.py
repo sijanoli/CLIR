@@ -3,7 +3,7 @@ import pandas as pd
 from whoosh.fields import Schema, TEXT, ID
 from whoosh import index
 from whoosh.qparser import MultifieldParser
-from googletrans import Translator
+from deep_translator import GoogleTranslator
 from langdetect import detect
 import os
 
@@ -54,8 +54,9 @@ if uploaded_file:
             lang = "unknown"
 
         # Translation to English
-        translator = Translator()
-        translated_query = translator.translate(query_text, src=lang, dest='en').text
+  translator = GoogleTranslator(source=lang, target='en')
+translated_query = translator.translate(query_text)
+
 
         st.write(f"**Detected Language:** `{lang}`")
         st.write(f"**Translated Query:** `{translated_query}`")
