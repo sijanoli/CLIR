@@ -54,7 +54,7 @@ if uploaded_file:
             lang = "unknown"
 
         # Translation to English
-  translator = GoogleTranslator(source=lang, target='en')
+translator = GoogleTranslator(source=lang, target='en')
 translated_query = translator.translate(query_text)
 
 
