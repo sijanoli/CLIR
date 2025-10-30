@@ -46,20 +46,22 @@ if uploaded_file:
     st.subheader("🔍 Try a Query")
 
     query_text = st.text_input("Enter query (in any language):", "")
+
     if query_text:
-        # Language Detection
+        # Detect language
         try:
             lang = detect(query_text)
         except:
             lang = "unknown"
 
-        # Translation to English
-translator = GoogleTranslator(source=lang, target='en')
-translated_query = translator.translate(query_text)
-
+        # Translate to English
+        try:
+            translated_query = GoogleTranslator(source=lang, target='en').translate(query_text)
+        except:
+            translated_query = query_text  # fallback to same text if translation fails
 
         st.write(f"**Detected Language:** `{lang}`")
-        st.write(f"**translated_query:** `{translated_query}`")
+        st.write(f"**Translated Query:** `{translated_query}`")
 
         # Search in index
         with ix.searcher() as searcher:
@@ -75,7 +77,6 @@ translated_query = translator.translate(query_text)
                     st.markdown(f"### {r['title']}")
                     st.write(r["content"][:250] + "...")
                     st.divider()
-
 else:
     st.info("👈 Upload a CSV file to begin. (Must have 'title' and 'content' columns.)")
 
