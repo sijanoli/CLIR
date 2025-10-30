@@ -59,7 +59,7 @@ translated_query = translator.translate(query_text)
 
 
         st.write(f"**Detected Language:** `{lang}`")
-        st.write(f"**Translated Query:** `{translated_query}`")
+        st.write(f"**translated_query:** `{translated_query}`")
 
         # Search in index
         with ix.searcher() as searcher:
