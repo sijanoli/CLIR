@@ -80,4 +80,4 @@ if uploaded_file:
 else:
     st.info("👈 Upload a CSV file to begin. (Must have 'title' and 'content' columns.)")
 
-st.sidebar.caption("Developed by [Your Name] — CSE466 IR Project")
+st.sidebar.caption("Developed by [Sijan Oli] —  IR Project")
